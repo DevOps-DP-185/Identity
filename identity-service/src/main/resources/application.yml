@@ -1,0 +1,37 @@
+token:
+  host: localhost
+  expiration: 90
+
+key:
+  privateKeyPath: keys/private_key.der
+
+spring:
+  application:
+    name: identity-service
+
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
+
+  kafka:
+    bootstrap-servers: ${BOOTSTRAP_SERVERS}
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: >
+          validation: com.softserve.identityservice.model.EmailVerificationDto
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_SERVER}/eureka/
+
+logging:
+  file:
+    path: /var/log/identity
