@@ -12,34 +12,6 @@ project {
     buildType(Deploy)
 }
 
-object Deploy : BuildType({
-    name = "Deploy"
-    enablePersonalBuilds = false
-    type = BuildTypeSettings.Type.DEPLOYMENT
-    maxRunningBuilds = 1
-
-    vcs {
-        root(DslContext.settingsRoot)
-    }
-    steps {
-        step {
-            type = "ssh-exec-runner"
-            param("jetbrains.buildServer.sshexec.command", "ls")
-            param("jetbrains.buildServer.deployer.targetUrl", "35.184.252.223")
-            param("jetbrains.buildServer.sshexec.authMethod", "DEFAULT_KEY")
-            param("jetbrains.buildServer.sshexec.keyFile", "/home/artemkulish123/")
-        }
-    }
-    triggers {
-        vcs {
-        }
-    }
-    dependencies {
-        snapshot(IdentityBuild) {
-        }
-    }
-})
-
 object IdentityBuild : BuildType({
     name = "Build"
 
@@ -88,4 +60,32 @@ object IdentityBuild : BuildType({
             }
         }
     }        
+})
+
+object Deploy : BuildType({
+    name = "Deploy"
+    enablePersonalBuilds = false
+    type = BuildTypeSettings.Type.DEPLOYMENT
+    maxRunningBuilds = 1
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+    steps {
+        step {
+            type = "ssh-exec-runner"
+            param("jetbrains.buildServer.sshexec.command", "ls")
+            param("jetbrains.buildServer.deployer.targetUrl", "35.184.252.223")
+            param("jetbrains.buildServer.sshexec.authMethod", "DEFAULT_KEY")
+            param("jetbrains.buildServer.sshexec.keyFile", "/home/artemkulish123/")
+        }
+    }
+    triggers {
+        vcs {
+        }
+    }
+    dependencies {
+        snapshot(IdentityBuild) {
+        }
+    }
 })
