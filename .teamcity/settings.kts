@@ -46,37 +46,37 @@ object IdentityBuild : BuildType({
     vcs {
         root(DslContext.settingsRoot)
     }
-steps {
-    maven {
-        name = "Identity-starter"
-        goals = "clean install"
-        pomLocation = "identity-starter/pom.xml"
-        localRepoScope = MavenBuildStep.RepositoryScope.MAVEN_DEFAULT
-        jdkHome = "%env.JDK_11%"
-    }
-    maven {
-        name = "Identity-service"
-        goals = "clean package"
-        pomLocation = "identity-service/pom.xml"
-        localRepoScope = MavenBuildStep.RepositoryScope.MAVEN_DEFAULT
-        jdkHome = "%env.JDK_11%"
-    }
-    dockerCommand {
-        commandType = build {
-            source = file {
-                path = "identity-service/Dockerfile"
+    steps {
+        maven {
+            name = "Identity-starter"
+            goals = "clean install"
+            pomLocation = "identity-starter/pom.xml"
+            localRepoScope = MavenBuildStep.RepositoryScope.MAVEN_DEFAULT
+            jdkHome = "%env.JDK_11%"
+        }
+        maven {
+            name = "Identity-service"
+            goals = "clean package"
+            pomLocation = "identity-service/pom.xml"
+            localRepoScope = MavenBuildStep.RepositoryScope.MAVEN_DEFAULT
+            jdkHome = "%env.JDK_11%"
+        }
+        dockerCommand {
+         commandType = build {
+                source = file {
+                    path = "identity-service/Dockerfile"
+                }
+                namesAndTags = "artemkulish/demo4:identity"
             }
-            namesAndTags = "artemkulish/demo4:identity"
+            param("dockerImage.platform", "linux")
         }
-        param("dockerImage.platform", "linux")
-    }
-    dockerCommand {
-        commandType = push {
-            namesAndTags = "artemkulish/demo4:identity"
+        dockerCommand {
+            commandType = push {
+                namesAndTags = "artemkulish/demo4:identity"
+            }
+            param("dockerfile.path", "Dockerfile")
         }
-        param("dockerfile.path", "Dockerfile")
     }
-}
     triggers {
         vcs {
         }
