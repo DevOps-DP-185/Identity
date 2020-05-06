@@ -1,6 +1,6 @@
 FROM openjdk:9
 ENV TZ=Europe/Kiev
-COPY target/identity-service-0.0.1.jar /identity-service-0.0.1.jar
+COPY target/kick-scooter-identity.jar /kick-scooter-identity.jar
 COPY sumo_credentials.txt /home/sumo_credentials.txt
 COPY sumo-sources.json /home/sumo-sources.json
 COPY run.sh run.sh
