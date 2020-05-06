@@ -6,5 +6,5 @@ COPY target/kick-scooter-identity.jar \
      run.sh \
      /home/
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon && \
-    wget "https://collectors.sumologic.com/rest/download/linux/64" -q SumoCollector.sh && chmod +x SumoCollector.sh
+    wget "https://collectors.sumologic.com/rest/download/linux/64" -O SumoCollector.sh && chmod +x SumoCollector.sh
 ENTRYPOINT ["bash", "/home/run.sh"]
