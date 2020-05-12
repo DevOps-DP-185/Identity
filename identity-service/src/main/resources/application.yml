@@ -32,6 +32,8 @@ eureka:
     service-url:
       defaultZone: http://${EUREKA_SERVER}/eureka/
 
+host-url: ${HOST_URL}      
+
 logging:
   file:
     path: /var/log/identity
