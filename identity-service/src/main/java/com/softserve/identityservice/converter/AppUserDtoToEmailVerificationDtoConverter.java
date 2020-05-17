@@ -4,6 +4,7 @@ import com.softserve.identityservice.model.AppUser;
 import com.softserve.identityservice.model.EmailVerificationDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
 @Component
 public class AppUserDtoToEmailVerificationDtoConverter implements Converter<AppUser, EmailVerificationDto> {
