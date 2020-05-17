@@ -21,7 +21,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/kick-scooter-identity/accounts")
+@RequestMapping("/accounts")
 public class UserController {
     private final UserService userService;
 
