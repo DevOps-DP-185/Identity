@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Order(1)
 @RequiredArgsConstructor
 public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
-    private static final String LOGIN_PAGE_URL = "/kick-scooter-identity/accounts/sign-in";
+    private static final String LOGIN_PAGE_URL = "/accounts/sign-in";
 
     private final TokenService tokenService;
     private final ObjectMapper objectMapper;
@@ -33,8 +33,8 @@ public class WebSecurityAdapter extends WebSecurityConfigurerAdapter {
         http
                 .cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/kick-scooter-identity/accounts/admin/**").hasRole("ADMIN")
-                .antMatchers("/kick-scooter-identity/accounts/sign-up", "/kick-scooter-identity/accounts/activate/**").permitAll()
+                .antMatchers("/accounts/admin/**").hasRole("ADMIN")
+                .antMatchers("/accounts/sign-up", "/accounts/activate/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterAt(new AuthorizationFilter(checkingTokenService), BasicAuthenticationFilter.class)
