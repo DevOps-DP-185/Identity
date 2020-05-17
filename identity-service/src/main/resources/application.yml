@@ -32,7 +32,8 @@ eureka:
     service-url:
       defaultZone: http://${EUREKA_SERVER}/eureka/
 
-host-url: ${HOST_URL}      
+host-url: ${HOST_URL}
+activation-url: ${host-url}/activation/
 
 logging:
   file:
