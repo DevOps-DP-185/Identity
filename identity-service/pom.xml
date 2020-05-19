@@ -12,6 +12,7 @@
     <artifactId>identity-service</artifactId>
     <version>0.0.1</version>
     <name>identity-service</name>
+    <packaging>war</packaging>
     <description>Custom realization of Spring Security for KickScooter project</description>
 
     <properties>
@@ -87,6 +88,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

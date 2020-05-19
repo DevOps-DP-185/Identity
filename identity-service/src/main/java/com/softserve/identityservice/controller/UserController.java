@@ -21,28 +21,28 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/kick-scooter-identity/accounts")
+@RequestMapping("/scooter/accounts")
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("/sign-up")
+    @PostMapping("/scooter/sign-up")
     public ResponseEntity<UUID> signUp(@RequestBody SignUpDto request) {
         AppUser user = userService.signUp(request);
         return ResponseEntity.ok(user.getVerifyToken());
     }
 
-    @GetMapping("/activate/{token}")
+    @GetMapping("/scooter/activate/{token}")
     public ResponseEntity<Void> verifyAccount(@PathVariable UUID token) throws ServletException {
         userService.activateAccount(token);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/admin/users/{userId}/block")
+    @PutMapping("/scooter//admin/users/{userId}/block")
     public ResponseEntity<Long> blockUser(@PathVariable UUID userId) {
         return ResponseEntity.ok(userService.blockUser(userId));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/scooter/{id}")
     public ResponseEntity<UserInfoResponse> userResponse(@PathVariable UUID id) {
         return ResponseEntity.ok(userService.userInfo(id));
     }
